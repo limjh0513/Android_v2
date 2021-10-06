@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 29
+
+    buildFeatures{
+        dataBinding = true
+    }
+
+    defaultConfig {
+        applicationId "kr.hs.dgsw.smartfarm"
+        minSdk 24
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycle_version"
+
+    //retrofit2
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3_version"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit2_version"
+
+    //Reactive X
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroid_version"
+
+    // 원형 그래프 라이브러리
+    implementation 'com.dinuscxj:circleprogressbar:1.3.0'
+
+    //새로고침 layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+}
