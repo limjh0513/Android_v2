@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SmartFarm</string>
+
+    <string name="SmartFarm">SmartFarm</string>
+    <string name="detailViewTitle">Smart Farm</string>
+    <string name="farmState">농장 상태</string>
+    <string name="moreShow">더보기</string>
+    <string name="waterView">수분</string>
+    <string name="ledView">LED</string>
+    <string name="tempView">온도</string>
+    <string name="soilView">비료</string>
+    <string name="cameraView">카메라</string>
+</resources>
