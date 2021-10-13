@@ -8,6 +8,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -64,8 +65,9 @@ class LedDetailsActivity : AppCompatActivity() {
             })
 
             ledStatus.observe(this@LedDetailsActivity, Observer {
-                setStateImg(it)
+                Log.e("11", "onLedStatus $it")
                 initTextViewSuccess(it)
+                setStateImg(it)
             })
 
             onOffBtn.observe(this@LedDetailsActivity, Observer {
@@ -75,28 +77,37 @@ class LedDetailsActivity : AppCompatActivity() {
     }
 
     private fun setStateImg(ledValue: Boolean) {
-        if (ledValue) {
-            mBinding.ledStateImg.setImageResource(R.drawable.led_state_img)
-            mBinding.ledonoffpicker.value = 1
-        } else {
-            mBinding.ledStateImg.setImageResource(R.drawable.ledoff)
-            mBinding.ledonoffpicker.value = 0
+        Log.e("11", "setStateImg $ledValue")
+        runOnUiThread {
+            if (ledValue) {
+                mBinding.ledStateImg.setImageResource(R.drawable.led_state_img)
+                mBinding.ledonoffpicker.value = 1
+            } else {
+                mBinding.ledStateImg.setImageResource(R.drawable.ledoff)
+                mBinding.ledonoffpicker.value = 0
+            }
         }
     }
 
     private fun initTextViewFail() {
-        val str: String = "값을 전달받지 못했습니다"
-        spannable = SpannableStringBuilder(str)
-        spannable.setSpan(
-            ForegroundColorSpan(Color.BLACK),
-            0, 7,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
-        spannable.setSpan(
-            StyleSpan(Typeface.BOLD),
-            0, 7,
-            Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-        )
+        runOnUiThread {
+            val str: String = "값을 전달받지 못했습니다"
+            spannable = SpannableStringBuilder(str)
+            spannable.setSpan(
+                ForegroundColorSpan(Color.BLACK),
+                0, 7,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+            spannable.setSpan(
+                StyleSpan(Typeface.BOLD),
+                0, 7,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+            )
+
+
+            mBinding.ledText1.text = spannable
+        }
+
     }
 
     fun onOffBtnOnclick() { // numberPicker 버튼 클릭 시
@@ -108,7 +119,9 @@ class LedDetailsActivity : AppCompatActivity() {
     }
 
     private fun initTextViewSuccess(ledValue: Boolean) {
+        Log.e("qqq", "123")
         if (!ledValue) {
+            Log.e("qqq", "123 off")
             val str: String = "LED 기능이 꺼져있어요"
             spannable = SpannableStringBuilder(str)
             spannable.setSpan(
@@ -122,6 +135,7 @@ class LedDetailsActivity : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         } else if (ledValue) {
+            Log.e("qqq", "123 on")
             val str: String = "LED 기능이 켜져있어요"
             spannable = SpannableStringBuilder(str)
             spannable.setSpan(
@@ -135,5 +149,6 @@ class LedDetailsActivity : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         }
+        mBinding.ledText1.text = spannable
     }
 }

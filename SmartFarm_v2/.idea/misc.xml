@@ -6,7 +6,9 @@
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/highsoilcondition.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/ic_soilimg.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/soilcondition.xml" value="0.22083333333333333" />
-        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_led_details.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_co2.xml" value="0.33" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_fan.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_led_details.xml" value="0.18" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_moisture_details.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_soil_details.xml" value="0.36614583333333334" />
@@ -16,7 +18,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

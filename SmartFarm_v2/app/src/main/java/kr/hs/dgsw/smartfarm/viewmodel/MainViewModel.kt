@@ -16,16 +16,21 @@ class MainViewModel: BaseViewModel() {
     val moistureSensorText = MutableLiveData<String>()
     val tempSensorText = MutableLiveData<String>()
     val ledSensorText = MutableLiveData<String>()
+    val fanSensorText = MutableLiveData<String>()
+    val co2SensorText = MutableLiveData<String>()
 
     val moistureStateView = SingleLiveEvent<Any>()
     val tempStateView = SingleLiveEvent<Any>()
     val ledStateView = SingleLiveEvent<Any>()
-    val soilStateView = SingleLiveEvent<Any>()
+    val fanStateView = SingleLiveEvent<Any>()
+    val co2StateView = SingleLiveEvent<Any>()
 
     init {
         moistureSensorText.value = "로딩중"
         tempSensorText.value = "로딩중"
         ledSensorText.value = "로딩중"
+        fanSensorText.value = "로딩중"
+        co2SensorText.value = "로딩중"
 
         getSensorState()
     }
@@ -35,13 +40,18 @@ class MainViewModel: BaseViewModel() {
 
         addDisposable(repository.getAllSensorValue(), object : DisposableSingleObserver<getAll>(){
             override fun onSuccess(t: getAll) {
-                moistureSensorText.value = t.humidityGnd.value.toString()
-                tempSensorText.value = t.temp.value.toString()
-                ledSensorText.value = t.led.time.toString()
+                moistureSensorText.value = t.humidityGnd.value.toString()+"%"
+                tempSensorText.value = t.temp.value.toString()+"도"
+                ledSensorText.value = t.led.time.toString()+ "초"
+                fanSensorText.value = "더보기"
+                co2SensorText.value = "${(Math.round(t.co2.value*100)/100)}ppm"
+
+                Log.e("aaaa", "${moistureSensorText.value} ${tempSensorText.value} ${ledSensorText.value}")
             }
 
             override fun onError(e: Throwable) {
                 e.printStackTrace()
+                Log.e("aaaa", e.toString());
                 errorEvent.value = e
             }
 
@@ -60,8 +70,12 @@ class MainViewModel: BaseViewModel() {
         ledStateView.call()
     }
 
-    fun onClickSoilStateView(){
-        soilStateView.call()
+    fun onClickFanStateView(){
+        fanStateView.call()
+    }
+
+    fun onClickCo2StateView(){
+        co2StateView.call()
     }
 
 

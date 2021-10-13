@@ -2,13 +2,13 @@ package kr.hs.dgsw.smartfarm.repository
 
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm.network.Server
-import kr.hs.dgsw.smartfarm.network.model.response.Humidity
-import kr.hs.dgsw.smartfarm.network.model.response.HumidityGnd
+import kr.hs.dgsw.smartfarm.network.model.response.Fan
+import kr.hs.dgsw.smartfarm.network.model.response.Led
 import org.json.JSONObject
 
-class MoistureRepository {
-    fun getHumidity(): Single<Humidity> {
-        return Server.retrofit.getHumidity().map {
+class FanRepository {
+    fun getFan(): Single<Fan> {
+        return Server.retrofit.getFan().map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))
@@ -17,8 +17,8 @@ class MoistureRepository {
         }
     }
 
-    fun controlWater(params: HashMap<String?, Boolean?>): Single<Void> {
-        return Server.retrofit.postControlWater(params).map {
+    fun controlFan(params: HashMap<String?, Boolean?>): Single<Void> {
+        return Server.retrofit.postControlFan(params).map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))

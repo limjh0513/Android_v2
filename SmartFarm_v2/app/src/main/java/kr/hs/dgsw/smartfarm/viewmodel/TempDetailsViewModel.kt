@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartfarm.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.smartfarm.base.BaseViewModel
 import io.reactivex.observers.DisposableSingleObserver
@@ -27,6 +28,8 @@ class TempDetailsViewModel: BaseViewModel() {
             override fun onSuccess(t: Temp) {
                 tempStatus.value = t.status
                 tempValue.value = t.value
+
+                Log.e("aaaa", "${tempStatus.value} ${tempValue.value}")
             }
 
             override fun onError(e: Throwable) {

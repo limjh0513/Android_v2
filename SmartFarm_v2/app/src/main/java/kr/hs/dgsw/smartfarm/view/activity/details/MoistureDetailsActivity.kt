@@ -62,7 +62,6 @@ class MoistureDetailsActivity : AppCompatActivity() {
 
             moistureValue.observe(this@MoistureDetailsActivity, Observer {
                 setCircleProgress(it)
-
             })
 
             getErrorEvent.observe(this@MoistureDetailsActivity, Observer {
@@ -127,11 +126,13 @@ class MoistureDetailsActivity : AppCompatActivity() {
             Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         )
         spannable2 = SpannableStringBuilder("못했습니다.")
+
+        mBinding.waterText1.text = spannable1
+        mBinding.waterText2.text = spannable2
     }
 
     private fun initTextViewSuccess(moistureState: Int) { // 설명 text 굵기 조절
-
-
+        Log.e("aaa","${moistureState}")
         if (moistureState == -1) {
             spannable1 = SpannableStringBuilder("수분이 부족해요")
             spannable1.setSpan(
@@ -207,15 +208,18 @@ class MoistureDetailsActivity : AppCompatActivity() {
             spannable2.setSpan(
                 ForegroundColorSpan(Color.BLACK),
                 0, // start
-                3, // end
+                4, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
             spannable2.setSpan(
                 StyleSpan(Typeface.BOLD),
                 0, // start
-                3, // end
+                4, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         }
+
+        mBinding.waterText1.text = spannable1
+        mBinding.waterText2.text = spannable2
     }
 }

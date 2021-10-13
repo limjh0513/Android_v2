@@ -1,10 +1,9 @@
 package kr.hs.dgsw.smartfarm.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.smartfarm.base.BaseViewModel
 import io.reactivex.observers.DisposableSingleObserver
-import kr.hs.dgsw.smartfarm.network.model.response.HumidityGnd
+import kr.hs.dgsw.smartfarm.network.model.response.Humidity
 import kr.hs.dgsw.smartfarm.repository.MoistureRepository
 import kr.hs.dgsw.smartfarm.util.SingleLiveEvent
 
@@ -32,9 +31,9 @@ class MoistureDetailsViewModel : BaseViewModel() {
     }
 
     fun getMoistureValue() {
-        addDisposable(repository.getHumidityGnd(),
-            object : DisposableSingleObserver<HumidityGnd>() {
-                override fun onSuccess(t: HumidityGnd) {
+        addDisposable(repository.getHumidity(),
+            object : DisposableSingleObserver<Humidity>() {
+                override fun onSuccess(t: Humidity) {
                     moistureStatus.value = t.status
                     moistureValue.value = t.value
                 }

@@ -9,9 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.smartfarm.R
 import kr.hs.dgsw.smartfarm.databinding.ActivityMainBinding
-import kr.hs.dgsw.smartfarm.view.activity.details.LedDetailsActivity
-import kr.hs.dgsw.smartfarm.view.activity.details.MoistureDetailsActivity
-import kr.hs.dgsw.smartfarm.view.activity.details.TempDetailsActivity
+import kr.hs.dgsw.smartfarm.view.activity.details.*
 import kr.hs.dgsw.smartfarm.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +46,16 @@ class MainActivity : AppCompatActivity() {
 
             ledStateView.observe(this@MainActivity, Observer {
                 val intent = Intent(this@MainActivity, LedDetailsActivity::class.java)
+                startActivity(intent)
+            })
+
+            fanStateView.observe(this@MainActivity, Observer {
+                val intent = Intent(this@MainActivity, FanActivity::class.java)
+                startActivity(intent)
+            })
+
+            co2StateView.observe(this@MainActivity, Observer {
+                val intent = Intent(this@MainActivity, Co2Activity::class.java)
                 startActivity(intent)
             })
 

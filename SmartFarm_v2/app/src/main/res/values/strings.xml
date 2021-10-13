@@ -10,4 +10,6 @@
     <string name="tempView">온도</string>
     <string name="soilView">비료</string>
     <string name="cameraView">카메라</string>
+    <string name="co2View">공기질</string>
+    <string name="fanView">환풍기</string>
 </resources>

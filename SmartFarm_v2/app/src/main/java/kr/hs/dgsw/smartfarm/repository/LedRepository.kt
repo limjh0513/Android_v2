@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartfarm.repository
 
-import android.util.Log
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm.network.Server
 import kr.hs.dgsw.smartfarm.network.model.response.Led

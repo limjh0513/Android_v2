@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -17,6 +18,7 @@ import kr.hs.dgsw.smartfarm.databinding.ActivityTempDetailsBinding
 import kr.hs.dgsw.smartfarm.viewmodel.TempDetailsViewModel
 
 class TempDetailsActivity : AppCompatActivity() {
+
     lateinit var mBinding: ActivityTempDetailsBinding
     lateinit var mViewModel: TempDetailsViewModel
 
@@ -38,8 +40,8 @@ class TempDetailsActivity : AppCompatActivity() {
     }
 
     private fun observerViewModel() {
-            initTextViewFail()
-            setCircleProgress(mViewModel.tempValue.value!!)
+        initTextViewFail()
+        setCircleProgress(mViewModel.tempValue.value!!)
 
         with(mViewModel) {
             backBtn.observe(this@TempDetailsActivity, Observer {
@@ -47,16 +49,16 @@ class TempDetailsActivity : AppCompatActivity() {
             })
 
             errorEvent.observe(this@TempDetailsActivity, Observer {
-                    initTextViewFail()
-                    setCircleProgress(mViewModel.tempValue.value!!)
+                initTextViewFail()
+                setCircleProgress(mViewModel.tempValue.value!!)
             })
 
             tempStatus.observe(this@TempDetailsActivity, Observer {
-                    initTextViewSuccess(it)
+                initTextViewSuccess(it)
             })
 
             tempValue.observe(this@TempDetailsActivity, Observer {
-                    setCircleProgress(it)
+                setCircleProgress(it)
             })
         }
     }
@@ -93,6 +95,10 @@ class TempDetailsActivity : AppCompatActivity() {
             Spannable.SPAN_EXCLUSIVE_INCLUSIVE
         )
         spannable2 = SpannableStringBuilder("못했습니다.")
+
+        mBinding.tempText1.text = spannable1
+        mBinding.tempText2.text = spannable2
+
     }
 
     private fun initTextViewSuccess(tempState: Int) {
@@ -187,5 +193,7 @@ class TempDetailsActivity : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         }
+        mBinding.tempText1.text = spannable1
+        mBinding.tempText2.text = spannable2
     }
 }

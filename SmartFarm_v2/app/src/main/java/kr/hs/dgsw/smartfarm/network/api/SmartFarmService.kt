@@ -15,6 +15,21 @@ interface SmartFarmService {
     @GET("humidity_gnd")
     fun getHumidityGnd(): Single<Response<HumidityGnd>>
 
+    @GET("humidity")
+    fun getHumidity(): Single<Response<Humidity>>
+
+    @GET("temp")
+    fun getTemp(): Single<Response<Temp>>
+
+    @GET("air")
+    fun getCo2(): Single<Response<Co2>>
+
+    @GET("led")
+    fun getLed(): Single<Response<Led>>
+
+    @GET("fan")
+    fun getFan(): Single<Response<Fan>>
+
     @FormUrlEncoded
     @POST("control_water")
     fun postControlWater(
@@ -22,16 +37,16 @@ interface SmartFarmService {
         params: HashMap<String?, Boolean?>
     ): Single<Response<Void>>
 
-    @GET("temp")
-    fun getTemp(): Single<Response<Temp>>
-
-
-    @GET("led")
-    fun getLed(): Single<Response<Led>>
-
     @FormUrlEncoded
     @POST("control_led")
     fun postControlLed(
+        @FieldMap
+        params: HashMap<String?, Boolean?>
+    ): Single<Response<Void>>
+
+    @FormUrlEncoded
+    @POST("control_fan")
+    fun postControlFan(
         @FieldMap
         params: HashMap<String?, Boolean?>
     ): Single<Response<Void>>
