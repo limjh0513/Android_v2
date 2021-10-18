@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartfarm.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.smartfarm.base.BaseViewModel
+import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import kr.hs.dgsw.smartfarm.network.model.response.Led
 import kr.hs.dgsw.smartfarm.repository.LedRepository
@@ -13,7 +14,7 @@ class LedDetailsViewModel : BaseViewModel() {
     val getErrorEvent = MutableLiveData<Throwable>()
 
     val postErrorEvent = MutableLiveData<Throwable>()
-    val postEvent = MutableLiveData<Void>()
+    val postEvent = MutableLiveData<Boolean>()
 
     val backBtn = SingleLiveEvent<Any>()
     val onOffBtn = SingleLiveEvent<Any>()
@@ -28,7 +29,6 @@ class LedDetailsViewModel : BaseViewModel() {
         addDisposable(repository.getLed(), object : DisposableSingleObserver<Led>() {
             override fun onSuccess(t: Led) {
                 ledStatus.value = t.status
-                Log.e("aaaa", "${ledStatus.value}")
             }
 
             override fun onError(e: Throwable) {
@@ -39,15 +39,13 @@ class LedDetailsViewModel : BaseViewModel() {
     }
 
     fun postLedOnOff(params: HashMap<String?, Boolean?>) {
-        addDisposable(repository.controlLed(params), object : DisposableSingleObserver<Void>() {
-            override fun onSuccess(t: Void) {
+        addDisposable(repository.controlLed(params), object : DisposableSingleObserver<Boolean>() {
+            override fun onSuccess(t: Boolean) {
                 postEvent.value = t
-                Log.e("aaaa", "${postEvent.value}")
             }
-
             override fun onError(e: Throwable) {
-                e.printStackTrace()
                 postErrorEvent.value = e
+                e.printStackTrace()
             }
 
         })

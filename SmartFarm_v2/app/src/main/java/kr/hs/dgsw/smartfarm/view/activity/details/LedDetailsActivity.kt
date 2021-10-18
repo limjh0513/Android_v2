@@ -8,7 +8,6 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -40,10 +39,10 @@ class LedDetailsActivity : AppCompatActivity() {
         mBinding.ledonoffpicker.maxValue = pickerValues.size - 1
         mBinding.ledonoffpicker.displayedValues = pickerValues
 
-        observerViewMode()
+        observerViewModel()
     }
 
-    private fun observerViewMode() {
+    private fun observerViewModel() {
         initTextViewFail()
 
         with(mViewModel) {
@@ -62,10 +61,10 @@ class LedDetailsActivity : AppCompatActivity() {
 
             postEvent.observe(this@LedDetailsActivity, Observer {
                 Toast.makeText(this@LedDetailsActivity, "값 전송을 성공했습니다.", Toast.LENGTH_SHORT).show()
+                getLedValue()
             })
 
             ledStatus.observe(this@LedDetailsActivity, Observer {
-                Log.e("11", "onLedStatus $it")
                 initTextViewSuccess(it)
                 setStateImg(it)
             })
@@ -77,7 +76,6 @@ class LedDetailsActivity : AppCompatActivity() {
     }
 
     private fun setStateImg(ledValue: Boolean) {
-        Log.e("11", "setStateImg $ledValue")
         runOnUiThread {
             if (ledValue) {
                 mBinding.ledStateImg.setImageResource(R.drawable.led_state_img)
@@ -119,9 +117,7 @@ class LedDetailsActivity : AppCompatActivity() {
     }
 
     private fun initTextViewSuccess(ledValue: Boolean) {
-        Log.e("qqq", "123")
         if (!ledValue) {
-            Log.e("qqq", "123 off")
             val str: String = "LED 기능이 꺼져있어요"
             spannable = SpannableStringBuilder(str)
             spannable.setSpan(
@@ -135,7 +131,6 @@ class LedDetailsActivity : AppCompatActivity() {
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         } else if (ledValue) {
-            Log.e("qqq", "123 on")
             val str: String = "LED 기능이 켜져있어요"
             spannable = SpannableStringBuilder(str)
             spannable.setSpan(

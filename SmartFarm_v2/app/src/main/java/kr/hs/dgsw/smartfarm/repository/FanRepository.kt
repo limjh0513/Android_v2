@@ -17,13 +17,13 @@ class FanRepository {
         }
     }
 
-    fun controlFan(params: HashMap<String?, Boolean?>): Single<Void> {
+    fun controlFan(params: HashMap<String?, Boolean?>): Single<Boolean> {
         return Server.retrofit.postControlFan(params).map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))
             }
-            it.body()
+            it.isSuccessful
         }
     }
 }

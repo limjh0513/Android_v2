@@ -4,12 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/highsoilcondition.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/ic_fan_state.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/ic_humidity.xml" value="0.38229166666666664" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/ic_soilimg.xml" value="0.21927083333333333" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/off_fan_ic.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/drawable/soilcondition.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_co2.xml" value="0.33" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_fan.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_humidity.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_led_details.xml" value="0.18" />
-        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_moisture_details.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_soil_details.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljh04/Desktop/SmartFarm_v2/app/src/main/res/layout/activity_splash.xml" value="0.36614583333333334" />

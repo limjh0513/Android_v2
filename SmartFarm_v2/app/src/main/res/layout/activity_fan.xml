@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.dgsw.smartfarm.viewmodel.FanViewModel" />
@@ -101,7 +100,7 @@
                         android:id="@+id/fan_icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/off_fan_icon" />
+                        app:srcCompat="@drawable/off_fan_ic" />
 
                     <TextView
                         android:id="@+id/fan_stateMessage"

@@ -1,14 +1,14 @@
 package kr.hs.dgsw.smartfarm.repository
 
-import android.util.Log
 import io.reactivex.Single
 import kr.hs.dgsw.smartfarm.network.Server
-import kr.hs.dgsw.smartfarm.network.model.response.getAll
+import kr.hs.dgsw.smartfarm.network.model.response.Humidity
+import kr.hs.dgsw.smartfarm.network.model.response.HumidityGnd
 import org.json.JSONObject
 
-class MainRepository {
-    fun getAllSensorValue(): Single<getAll> {
-        return Server.retrofit.getSensorAll().map {
+class HumidityRepository {
+    fun getHumidity(): Single<HumidityGnd> {
+        return Server.retrofit.getHumidityGnd().map {
             if (!it.isSuccessful) {
                 val errorBody = JSONObject(it.errorBody().toString())
                 throw Throwable(errorBody.getString("message"))

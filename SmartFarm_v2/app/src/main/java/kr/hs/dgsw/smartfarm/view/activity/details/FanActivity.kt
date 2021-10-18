@@ -27,15 +27,18 @@ class FanActivity : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_fan)
         mViewModel = ViewModelProvider(this).get(FanViewModel::class.java)
 
+        mBinding.vm = mViewModel
+        mBinding.lifecycleOwner = this
+
 
         mBinding.fanPicker.minValue = 0
         mBinding.fanPicker.maxValue = pickerValues.size - 1
         mBinding.fanPicker.displayedValues = pickerValues
 
-        observerViewMode()
+        observerViewModel()
     }
 
-    private fun observerViewMode() {
+    private fun observerViewModel() {
         with(mViewModel) {
             backBtn.observe(this@FanActivity, Observer {
                 finish()
@@ -46,11 +49,23 @@ class FanActivity : AppCompatActivity() {
                 val params = HashMap<String?, Boolean?>()
                 params["status"] = statusValue
 
-                mViewModel.postLedOnOff(params)
+                mViewModel.postFanOnOff(params)
             })
 
             postEvent.observe(this@FanActivity, Observer {
                 Toast.makeText(this@FanActivity, "성공적으로 전달했습니다.", Toast.LENGTH_SHORT).show()
+                getFanValue()
+            })
+
+            fanStatus.observe(this@FanActivity, Observer {
+                if(it){
+                    mBinding.fanIcon.setImageResource(R.drawable.fan_on_icon)
+                    mBinding.fanStateMessage.text = "환풍기 기능이 켜져있어요."
+                } else {
+
+                    mBinding.fanIcon.setImageResource(R.drawable.off_fan_ic)
+                    mBinding.fanStateMessage.text = "환풍기 기능이 꺼져있어요."
+                }
             })
 
             onErrorEvent.observe(this@FanActivity, Observer {

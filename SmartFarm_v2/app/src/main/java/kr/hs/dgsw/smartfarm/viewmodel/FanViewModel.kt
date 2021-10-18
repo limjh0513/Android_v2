@@ -15,13 +15,13 @@ class FanViewModel: BaseViewModel() {
     val onOffBtn = SingleLiveEvent<Any>()
 
     val fanStatus = MutableLiveData<Boolean>()
-    val postEvent = MutableLiveData<Void>()
+    val postEvent = MutableLiveData<Boolean>()
 
     init {
-        getLedValue()
+        getFanValue()
     }
 
-    fun getLedValue() {
+    fun getFanValue() {
         addDisposable(repository.getFan(), object : DisposableSingleObserver<Fan>() {
             override fun onSuccess(t: Fan) {
                 fanStatus.value = t.status
@@ -33,11 +33,10 @@ class FanViewModel: BaseViewModel() {
         })
     }
 
-    fun postLedOnOff(params: HashMap<String?, Boolean?>) {
-        addDisposable(repository.controlFan(params), object : DisposableSingleObserver<Void>() {
-            override fun onSuccess(t: Void) {
+    fun postFanOnOff(params: HashMap<String?, Boolean?>) {
+        addDisposable(repository.controlFan(params), object : DisposableSingleObserver<Boolean>() {
+            override fun onSuccess(t: Boolean) {
                 postEvent.value = t
-                Log.e("aaaa", "${postEvent.value}")
             }
 
             override fun onError(e: Throwable) {

@@ -28,8 +28,6 @@ class TempDetailsViewModel: BaseViewModel() {
             override fun onSuccess(t: Temp) {
                 tempStatus.value = t.status
                 tempValue.value = t.value
-
-                Log.e("aaaa", "${tempStatus.value} ${tempValue.value}")
             }
 
             override fun onError(e: Throwable) {

@@ -59,6 +59,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             })
 
+            humidityStateView.observe(this@MainActivity, Observer {
+                val intent = Intent(this@MainActivity, HumidityActivity::class.java)
+                startActivity(intent)
+            })
+
             errorEvent.observe(this@MainActivity, Observer {
                 Toast.makeText(this@MainActivity, "서버와 연결을 실패했습니다.", Toast.LENGTH_SHORT).show()
             })

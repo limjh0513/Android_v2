@@ -25,9 +25,8 @@ class Co2ViewModel: BaseViewModel() {
     fun getLedValue() {
         addDisposable(repository.getCo2(), object : DisposableSingleObserver<Co2>() {
             override fun onSuccess(t: Co2) {
-                Log.e("hhhhhhh", "${t.value}")
-                co2Value.value = "${(Math.round(t.value * 100) / 100)}ppm"
-                Log.e("hhhhhhh", "${co2Value.value}")
+                val co2 = Math.round(t.value * 100) / 100.0
+                co2Value.value = "${co2}ppm"
             }
 
             override fun onError(e: Throwable) {

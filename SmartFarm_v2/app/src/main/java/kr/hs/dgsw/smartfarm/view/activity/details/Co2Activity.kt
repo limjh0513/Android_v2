@@ -25,10 +25,13 @@ class Co2Activity : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_co2)
         mViewModel = ViewModelProvider(this).get(Co2ViewModel::class.java)
 
-        observerViewMode()
+        mBinding.vm = mViewModel
+        mBinding.lifecycleOwner = this
+
+        observerViewModel()
     }
 
-    private fun observerViewMode() {
+    private fun observerViewModel() {
         with(mViewModel){
             backBtn.observe(this@Co2Activity, Observer {
                 finish()

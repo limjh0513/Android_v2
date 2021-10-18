@@ -9,43 +9,36 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface SmartFarmService {
-    @GET("get_all_sensor")
+    @GET("get_all_sensor/")
     fun getSensorAll(): Single<Response<getAll>>
 
-    @GET("humidity_gnd")
+    @GET("humidity_gnd/")
     fun getHumidityGnd(): Single<Response<HumidityGnd>>
 
-    @GET("humidity")
+    @GET("humidity/")
     fun getHumidity(): Single<Response<Humidity>>
 
-    @GET("temp")
+    @GET("temp/")
     fun getTemp(): Single<Response<Temp>>
 
-    @GET("air")
+    @GET("air/")
     fun getCo2(): Single<Response<Co2>>
 
-    @GET("led")
+    @GET("led/")
     fun getLed(): Single<Response<Led>>
 
-    @GET("fan")
+    @GET("fan/")
     fun getFan(): Single<Response<Fan>>
 
     @FormUrlEncoded
-    @POST("control_water")
-    fun postControlWater(
-        @FieldMap
-        params: HashMap<String?, Boolean?>
-    ): Single<Response<Void>>
-
-    @FormUrlEncoded
-    @POST("control_led")
+    @POST("control_led/")
     fun postControlLed(
         @FieldMap
         params: HashMap<String?, Boolean?>
     ): Single<Response<Void>>
 
     @FormUrlEncoded
-    @POST("control_fan")
+    @POST("control_fan/")
     fun postControlFan(
         @FieldMap
         params: HashMap<String?, Boolean?>

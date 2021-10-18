@@ -16,14 +16,4 @@ class MoistureRepository {
             it.body()
         }
     }
-
-    fun controlWater(params: HashMap<String?, Boolean?>): Single<Void> {
-        return Server.retrofit.postControlWater(params).map {
-            if (!it.isSuccessful) {
-                val errorBody = JSONObject(it.errorBody().toString())
-                throw Throwable(errorBody.getString("message"))
-            }
-            it.body()
-        }
-    }
 }

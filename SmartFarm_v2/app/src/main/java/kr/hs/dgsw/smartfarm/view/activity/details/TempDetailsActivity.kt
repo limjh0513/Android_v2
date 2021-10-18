@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -123,13 +122,13 @@ class TempDetailsActivity : AppCompatActivity() {
             spannable2.setSpan(
                 ForegroundColorSpan(Color.BLACK),
                 6, // start
-                10, // end
+                11, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
             spannable2.setSpan(
                 StyleSpan(Typeface.BOLD),
                 6, // start
-                10, // end
+                11, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         } else if (tempState == 0) {

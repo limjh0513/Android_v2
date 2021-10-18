@@ -9,7 +9,6 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -26,8 +25,6 @@ class MoistureDetailsActivity : AppCompatActivity() {
     lateinit var spannable1: SpannableStringBuilder
     lateinit var spannable2: SpannableStringBuilder
 
-    private val pickerValues = arrayOf("Off", "On") // on, off picker
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_moisture_details)
@@ -39,15 +36,10 @@ class MoistureDetailsActivity : AppCompatActivity() {
 
         mBinding.MoistureImage.bringToFront() // 사진 앞으로 가져오기
 
-        // numberPicker setting
-        mBinding.onOffPicker.minValue = 0
-        mBinding.onOffPicker.maxValue = pickerValues.size - 1
-        mBinding.onOffPicker.displayedValues = pickerValues
-
-        observerViewMode()
+        observerViewModel()
     }
 
-    private fun observerViewMode() {
+    private fun observerViewModel() {
         initTextViewFail()
         setCircleProgress(mViewModel.moistureValue.value!!)
 
@@ -70,32 +62,6 @@ class MoistureDetailsActivity : AppCompatActivity() {
                 initTextViewFail()
                 setCircleProgress(mViewModel.moistureValue.value!!)
             })
-
-            onOffBtn.observe(this@MoistureDetailsActivity, Observer {
-                onOffBtnOnclick(mViewModel.moistureStatus.value)
-            })
-
-            postErrorEvent.observe(this@MoistureDetailsActivity, Observer {
-                Toast.makeText(this@MoistureDetailsActivity, "값을 전송하지 못했습니다.", Toast.LENGTH_SHORT)
-                    .show()
-            })
-
-            postEvent.observe(this@MoistureDetailsActivity, Observer {
-                Toast.makeText(this@MoistureDetailsActivity, "값 전송을 성공했습니다..", Toast.LENGTH_SHORT)
-                    .show()
-            })
-        }
-    }
-
-    fun onOffBtnOnclick(moistureState: Int?) { // numberPicker 버튼 클릭 시
-        if (moistureState != -2) {
-            var statusValue: Boolean = mBinding.onOffPicker.value != 0
-            val params = HashMap<String?, Boolean?>()
-            params["status"] = statusValue
-
-            mViewModel.postControlWater(params)
-        } else {
-            Toast.makeText(this, "서버와 연결 되어있지 않습니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -132,7 +98,6 @@ class MoistureDetailsActivity : AppCompatActivity() {
     }
 
     private fun initTextViewSuccess(moistureState: Int) { // 설명 text 굵기 조절
-        Log.e("aaa","${moistureState}")
         if (moistureState == -1) {
             spannable1 = SpannableStringBuilder("수분이 부족해요")
             spannable1.setSpan(
@@ -180,13 +145,13 @@ class MoistureDetailsActivity : AppCompatActivity() {
             spannable2.setSpan(
                 ForegroundColorSpan(Color.BLACK),
                 3, // start
-                9, // end
+                10, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
             spannable2.setSpan(
                 StyleSpan(Typeface.BOLD),
                 3, // start
-                9, // end
+                10, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
         } else if (moistureState == 1) {
@@ -194,13 +159,13 @@ class MoistureDetailsActivity : AppCompatActivity() {
             spannable1.setSpan(
                 ForegroundColorSpan(Color.BLACK),
                 0, // start
-                2, // end
+                3, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
             spannable1.setSpan(
                 StyleSpan(Typeface.BOLD),
                 0, // start
-                2, // end
+                3, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
 
