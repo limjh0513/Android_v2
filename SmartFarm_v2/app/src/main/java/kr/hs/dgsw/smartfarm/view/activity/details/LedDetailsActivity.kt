@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -61,7 +63,12 @@ class LedDetailsActivity : AppCompatActivity() {
 
             postEvent.observe(this@LedDetailsActivity, Observer {
                 Toast.makeText(this@LedDetailsActivity, "값 전송을 성공했습니다.", Toast.LENGTH_SHORT).show()
-                getLedValue()
+
+                for (i in 0..3){
+                    Handler().postDelayed({
+                        mViewModel.getLedValue()
+                    }, 1500)
+                }
             })
 
             ledStatus.observe(this@LedDetailsActivity, Observer {

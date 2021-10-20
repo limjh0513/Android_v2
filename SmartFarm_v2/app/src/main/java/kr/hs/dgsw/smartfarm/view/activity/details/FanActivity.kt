@@ -2,7 +2,9 @@ package kr.hs.dgsw.smartfarm.view.activity.details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.SpannableStringBuilder
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -54,7 +56,12 @@ class FanActivity : AppCompatActivity() {
 
             postEvent.observe(this@FanActivity, Observer {
                 Toast.makeText(this@FanActivity, "성공적으로 전달했습니다.", Toast.LENGTH_SHORT).show()
-                getFanValue()
+
+                for (i in 0..3){
+                    Handler().postDelayed({
+                        mViewModel.getFanValue()
+                    }, 1500)
+                }
             })
 
             fanStatus.observe(this@FanActivity, Observer {

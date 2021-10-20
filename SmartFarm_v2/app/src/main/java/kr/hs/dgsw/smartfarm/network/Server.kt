@@ -16,7 +16,7 @@ object Server {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
-        .baseUrl("http://192.168.0.30:8000/v1/")
+        .baseUrl("http://10.80.163.229:8000/v1/")
         .build()
         .create(SmartFarmService::class.java)
 }

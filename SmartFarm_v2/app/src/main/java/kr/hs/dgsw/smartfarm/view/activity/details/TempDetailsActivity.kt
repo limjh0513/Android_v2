@@ -101,7 +101,7 @@ class TempDetailsActivity : AppCompatActivity() {
     }
 
     private fun initTextViewSuccess(tempState: Int) {
-        if (tempState == -1) {
+        if (tempState == 0) {
             val str1: String = "적당한 온도에요"
             val str2: String = "정말 기분이 좋은 날 입니다..."
             spannable1 = SpannableStringBuilder(str1)
@@ -131,7 +131,7 @@ class TempDetailsActivity : AppCompatActivity() {
                 11, // end
                 Spannable.SPAN_EXCLUSIVE_INCLUSIVE
             )
-        } else if (tempState == 0) {
+        } else if (tempState == -1) {
             val str1: String = "온도가 낮아요"
             val str2: String = "정말 추운날 입니다..."
             spannable1 = SpannableStringBuilder(str1)
