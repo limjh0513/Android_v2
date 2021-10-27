@@ -44,7 +44,7 @@ class MainViewModel : BaseViewModel() {
             override fun onSuccess(t: getAll) {
                 val co2Value = Math.round(t.co2.value * 100) / 100.0
 
-                moistureSensorText.value = t.humidityGnd.value.toString() + "%"
+                moistureSensorText.value = t.humidity.value.toString() + "%"
                 tempSensorText.value = t.temp.value.toString() + "도"
                 ledSensorText.value = "더보기"
                 fanSensorText.value = "더보기"

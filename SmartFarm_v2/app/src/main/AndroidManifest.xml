@@ -34,9 +34,6 @@
             android:name=".view.activity.details.TempDetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".view.activity.details.SoilDetailsActivity"
-            android:exported="true" />
-        <activity
             android:name=".view.activity.details.MoistureDetailsActivity"
             android:exported="true" />
         <activity
